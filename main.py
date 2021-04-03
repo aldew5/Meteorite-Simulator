@@ -19,7 +19,7 @@ THICKNESS = 10**5
 
 epsilon = 0.01
 time = 0
-z = THICKNESS
+z = 0
 
 k = DRAG * DENSITY*A/(2*MASS)
 
@@ -32,13 +32,13 @@ axes.set_xlabel("Time")
 
 a, b, t = [], [], []
 
-while z > 0:
+while z < THICKNESS:
     
     time += epsilon
     #print(z, v)
     z += v*epsilon + 1/2 *(ACCELERATION - k*v**2) * epsilon**2
     v += (ACCELERATION - k*v**2)*epsilon
-    print(z, v)
+    #print(z, v)
 
     a.append(z)
     b.append(v)
