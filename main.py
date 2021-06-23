@@ -78,6 +78,12 @@ while z > 0:
     z -= v*epsilon + 1/2 *(acceleration - k*v**2) * epsilon**2
     # update velocity
     v += (acceleration - k*v**2)*epsilon
+    
+    # update graviational acceleration
+    acceleration = calc_g(z)
+
+    # udpate the constant k
+    k = calc_k(mass)
 
     # melting point of iron is 1538 deg C
     # increase temperature until the melting point is reached
