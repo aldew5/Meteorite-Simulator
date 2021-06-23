@@ -35,8 +35,9 @@ def calc_g(position: int):
 def calc_mass(temp: int, t: int):
     """Using the Knudsen-Langmuir equation to calculate mass loss due to ablation"""
     p_vap = 10**(12.509-20014/temp)
+    c = math.sqrt(1.4*10**-8/2*math.pi*1.38 * 10**-23 * temp) * t
 
-    return -4 * math.pi * 0.001**2*p_vap*math.sqrt(1.4*10**-8/2*math.pi*1.38 * 10**-23 * temp) * t
+    return -4 * math.pi * 0.001**2*p_vap * c
 
 def calc_k(mass: int):
     
