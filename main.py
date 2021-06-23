@@ -73,11 +73,6 @@ temp = 0
 while z > 0:
     
     time += epsilon
-    # update graviational acceleration
-    acceleration = calc_g(z)
-
-    # udpate the constant k
-    k = calc_k(mass)
     
     # update position
     z -= v*epsilon + 1/2 *(acceleration - k*v**2) * epsilon**2
