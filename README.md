@@ -1,2 +1,2 @@
 # Meteorite-Simulator
-A meteorite simulator built in python as part of my Extended Essay project.
+A meteorite simulator built in Python as part of my IB Extended Essay project. 
