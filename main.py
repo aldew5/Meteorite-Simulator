@@ -23,7 +23,7 @@ THICKNESS = 480000
 DENSITY = 8000 #kg/m^3
 DRAG = 0.5
 
-R = 6500 #m
+initial_radius = 7500 #m
 area = math.pi * 7500 **2
 
 
@@ -92,10 +92,10 @@ axes2.set_xlabel("Time")
 a, b, c, t = [], [], [], []
 
 # initial mass as a product of volume and density 
-mass = 4/3 * math.pi* 10000**3
+mass = 4/3 * math.pi* initial_radius**3
 temp = 0
 
-radius = R
+radius = initial_radius
 
 while z > 0:
     
@@ -105,7 +105,7 @@ while z > 0:
 
 
     # update the area
-    radius = calc_radius(temp, R)
+    radius = calc_radius(temp, initial_radius)
     #print("HERE", radius, prev_radius)
     area = math.pi * radius **2
     #print("AREA", math.pi, radius)
@@ -144,4 +144,3 @@ axes.plot(t, a)
 axes2.plot(t, c)
 plt.show()
     
-                          
