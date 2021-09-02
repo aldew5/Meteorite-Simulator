@@ -5,7 +5,7 @@ import math
 Assumptions
 - Meteorite is a sphere
 - Meteroite has uniform density
-- All lost energy goes into heating the meteroid (not the air)
+- All lost energy goes into heating the meteoroid (not the air)
 
 
 All units are SI
