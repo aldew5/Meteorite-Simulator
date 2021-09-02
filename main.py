@@ -20,11 +20,11 @@ acceleration = 9.81
 
 # set constants
 THICKNESS = 480000
-DENSITY = 8000 #kg/m^3
+DENSITY = 8385#kg/m^3
 DRAG = 0.5
 
-initial_radius = 7500 #m
-area = math.pi * 7500 **2
+initial_radius = 8385#m
+area = math.pi * 7417.5 **2
 
 
 def calc_radius(temp: int, r):
@@ -33,14 +33,15 @@ def calc_radius(temp: int, r):
     # nothing has ablated 
     if (temp == 0):
         return r
+
+    ri=-1
     # calculate the inner radius
-    ri = r - 0.3 * 86* 10**8 /(5.67 * temp**3)
-   # print("IN", temp**3 * 5.67)
-    #print("TEMP", temp)
-    #print("IN", ri, - 0.3 * 86/((5.67 * 10**-8) * temp**3))
+    if (temp > 1500):
+        ri = r - 0.3 * 86* 10**8 /(5.67 * temp**3)
+        #print(temp)
+        #print(ri)
 
     # new radius
-    #print("RETURNING", ri)
     if (ri < 0):
         return r
     
@@ -104,11 +105,9 @@ while z > 0:
     acceleration = calc_g(z)
 
 
-    # update the area
-    radius = calc_radius(temp, initial_radius)
-    #print("HERE", radius, prev_radius)
+    # update the area and radius
+    radius = calc_radius(temp, radius)
     area = math.pi * radius **2
-    #print("AREA", math.pi, radius)
 
     # udpate the constant k
     k = calc_k(mass, area)
@@ -121,16 +120,11 @@ while z > 0:
 
     # melting point of taeunite is 1500 deg C
     # increase temperature until the melting point is reached
-    if (temp < 1500):
-        #print("Calc", drag *
-        #print("THICNKNESS", THICKNESS, z)
-        #print(THICKNESS - z)
+    if (temp < 2863):
         temp += DRAG * DENSITY * area/2 * (THICKNESS-z) * v**2/(450*mass)
-        #print(DRAG, (THICKNESS-z), 450*mass)
-        #print('after temp', temp)
+    
     mass += calc_mass(temp, time, radius)
 
-    #print(mass, v, z, acceleration, area)
    
     # save variables
     a.append(z)
@@ -138,9 +132,10 @@ while z > 0:
     c.append(mass)
     t.append(time)
 
-print(mass, v)
 print("KINETIC ENERGY", mass * v**2/2)
+print(mass, v, radius) 
 axes.plot(t, a)
 axes2.plot(t, c)
-plt.show()
+#plt.show()
     
+                          
