@@ -69,9 +69,6 @@ def calc_k(mass: int, area: float):
     #print("K", DRAG, DENSITY, area, 2 * mass)
     return DRAG * DENSITY*area/(2*mass)
 
-    
-
-
 
 # 200 m /s
 v = 1
@@ -139,9 +136,6 @@ while z > 0:
     c.append(mass)
     t.append(time)
 
-print("KINETIC ENERGY", mass * v**2/2000)
-print(mass, v, radius)
-print("TIME", time)
 axes.plot(t, a)
 axes2.plot(t, c)
 plt.show()
