@@ -7,7 +7,6 @@ Assumptions
 - Meteroite has uniform density
 - All lost energy goes into heating the meteoroid (not the air)
 
-
 All units are SI
 Meteorite is Taenite
 """
@@ -15,7 +14,6 @@ Meteorite is Taenite
 # parameters to vary
 initial_radius = 8000 #m
 epsilon = 0.015
-
 
 # acceleration due to gravity
 acceleration = 9.81
@@ -57,7 +55,6 @@ def calc_g(position: int):
 
     return 6.67 * 10**-11 * m_planet / r**2
 
-
 def calc_mass(temp: int, t: int, r_o: int):
     """Using the Knudsen-Langmuir equation to calculate mass loss due to ablation"""
     #print(temp)
@@ -97,13 +94,11 @@ radius = initial_radius
 count = 0
 
 while z > 0:
-    
     time += epsilon
     count += epsilon
     #print(count)
     # update graviational acceleration
     acceleration = calc_g(z)
-
 
     # update the area and radius
     if (count >= 0.1):
@@ -120,7 +115,6 @@ while z > 0:
     delta_z = v*epsilon + (acceleration - k*v**2)/(4*mass) * epsilon**2
     # update velocity
     v += (acceleration - (k*v**2)/mass)*epsilon
-    #print("V", k)
 
     # melting point of taeunite is 1500 deg C
     # increase temperature until the melting point is reached
@@ -129,7 +123,6 @@ while z > 0:
     
     mass += calc_mass(temp, time, radius)
 
-   
     # save variables
     a.append(radius)
     b.append(v)
