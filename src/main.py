@@ -1,5 +1,8 @@
 from matplotlib import pyplot as plt
 import math
+from utils.calc_gravity import calc_g
+from utils.calc_radius import calc_radius
+from utils.calc_mass import calc_mass
 
 """
 Assumptions
@@ -26,41 +29,6 @@ DENSITY = 8385 #kg/m^3
 DRAG = 0.5
 
 area = math.pi * 7417.5 **2
-
-
-def calc_radius(temp: int, r):
-    """ri = ro - 0.3 * K/sigmaT^3"""
-
-    # nothing has ablated 
-    if (temp == 0):
-        return r
-
-    ri = -1
-    # calculate the inner radius
-    if (temp > 1500):
-        ri = r - 0.3 * 86* 10**8 /(5.67 * temp**3)
-
-    # new radius
-    if (ri < 0):
-        return r
-    
-    return ri
-    
-def calc_g(position: int):
-    """g = GM/r^2"""
-    # mass of the earth
-    m_planet = 5.972 * 10**24
-    # radius of the earth plus the distance
-    r = (6371 * 1000) + position
-
-    return 6.67 * 10**-11 * m_planet / r**2
-
-def calc_mass(temp: int, t: int, r_o: int):
-    """Using the Knudsen-Langmuir equation to calculate mass loss due to ablation"""
-    #print(temp)
-    p_vap = 10**(12.509-20014/temp)
-
-    return -4 * math.pi * r_o**2*p_vap*math.sqrt(1.4*10**-8/2*math.pi*1.38 * 10**-23 * temp) * t
 
 def calc_k(mass: int, area: float):
     #print("K", DRAG, DENSITY, area, 2 * mass)
@@ -96,7 +64,6 @@ count = 0
 while z > 0:
     time += epsilon
     count += epsilon
-    #print(count)
     # update graviational acceleration
     acceleration = calc_g(z)
 
