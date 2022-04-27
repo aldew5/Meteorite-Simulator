@@ -99,5 +99,3 @@ while z > 0:
 axes.plot(t, a)
 axes2.plot(t, c)
 plt.show()
-    
-                          
